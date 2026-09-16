@@ -29,6 +29,7 @@ def aplicar_movimento(particula,movimento):
     rot = 20.0
     erro_rot = 3
 
+    pos_old = particula.copy()
     desloc = passo + random.uniform(-erro_desloc,erro_desloc)
 
     if movimento == 'avancar':
@@ -36,6 +37,18 @@ def aplicar_movimento(particula,movimento):
         particula['y'] += (desloc  * math.sin(particula['theta'])) 
     elif movimento == 'girar':
         particula['theta'] += math.radians(rot) + random.uniform(-math.radians(erro_rot),math.radians(erro_rot))
+
+    c = 0
+    if (particula['x'] < -3 or particula ['x'] > 3) or (particula['y'] < -2 or particula['y'] >2):
+        while (particula['x'] < -3 or particula ['x'] > 3) or (particula['y'] < -2 or particula['y'] >2):
+            particula['x'] = pos_old['x']
+            particula['y'] = pos_old['y']
+            desloc = passo + random.uniform(-erro_desloc,erro_desloc)
+            particula['x'] += (desloc  * math.cos(particula['theta'])) 
+            particula['y'] += (desloc  * math.sin(particula['theta'])) 
+            c+=1
+            if c >= 10:
+                return pos_old
 
 def mover_particulas(particulas,movimento):
 
@@ -45,14 +58,3 @@ def mover_particulas(particulas,movimento):
 
 
 
-COMANDOS_TESTE = [
-    ("avancar", 0.40),
-    ("avancar", 0.40),
-    ("girar", radians(20.0)),
-    ("avancar", 0.40),
-    ("avancar", 0.40),
-    ("girar", radians(20.0)),
-    ("avancar", 0.40),
-    ("girar", radians(20.0)),
-    ("avancar", 0.40),
-]
