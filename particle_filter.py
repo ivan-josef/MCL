@@ -179,12 +179,23 @@ if __name__ == '__main__':
     obs = simulador_fornecido.obter_observacao_camera() # o angulo_rad do simulador representa onde a camera do robo realmente viu a interseção
     print('observação da camera',obs)
     calcular_pesos(obs,particulas)
+    normalizar_pesos(particulas)
 
     print('--------------------')
     for p in particulas:
             print(p)
     print('--------------------')
-    reamostragem(particulas)
+    particulas = reamostragem(particulas)
+    for p in particulas:
+            print(p)
+
+    print('--------------------')
+    pose = estimar_pose(particulas)
+    print('pose',pose)
+        
+
+
+
 
     
 
