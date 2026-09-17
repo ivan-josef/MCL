@@ -124,16 +124,51 @@ def normalizar_pesos(particulas):
         p['w'] = p['w']/pesos_sum
 
 
+# Reamostragem
+
+def reamostragem(particulas_old):
+    pesos = []
+    particulas_new = []
+    for particula in particulas_old:
+        pesos.append(particula['w'])
+    particulas_reamostradas = random.choices(particulas_old,pesos,k=len(particulas_old))
+    for p in particulas_reamostradas:
+        particulas_new.append({
+            'x':p['x'],
+            'y':p['y'],
+            'theta':p['theta'],
+            'w': 1 / len(particulas_old),
+        })
+
+    return particulas_new
+        
+
+
+
+
 
 
 if __name__ == '__main__':
-    particulas = criar_particulas(1)
-    print('particulas',particulas)
+    particulas = criar_particulas(50)
+    for p in particulas:
+        print(p)
+
+    mover_particulas(particulas,'avancar')
+    mover_particulas(particulas,'girar')
+    print('--------------------')
+    for p in particulas:
+            print(p)
 
     obs = simulador_fornecido.obter_observacao_camera() # o angulo_rad do simulador representa onde a camera do robo realmente viu a interseção
     print('observação da camera',obs)
     calcular_pesos(obs,particulas)
-    print(particulas)
+
+    print('--------------------')
+    for p in particulas:
+            print(p)
+    print('--------------------')
+    reamostragem(particulas)
+
     
 
 
