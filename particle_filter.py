@@ -141,12 +141,29 @@ def reamostragem(particulas_old):
         })
 
     return particulas_new
+
+# estimação da posição do robo
+
+def estimar_pose(particulas):
+    x = 0
+    y = 0
+    sen_theta = []
+    cos_theta = []
+    for p in particulas:
+        x += p['x']
+        y += p['y']
+        sen_theta.append(math.sin(p['theta']))
+        cos_theta.append(math.cos(p['theta']))
+
+    mean_x = x / len(particulas)
+    mean_y = y / len(particulas)
+    theta_estimado = math.atan2(sum(sen_theta)/len(sen_theta),sum(cos_theta)/len(cos_theta))
+    pose = (mean_x,mean_y,theta_estimado)
+
+    return pose 
+
+    
         
-
-
-
-
-
 
 if __name__ == '__main__':
     particulas = criar_particulas(50)
