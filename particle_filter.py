@@ -8,15 +8,6 @@ def criar_particulas(n_particulas):
 
     particulas = [{'x':random.uniform(-3,3),'y':random.uniform(-2,2),'theta':random.uniform(-math.pi,math.pi),'w': 1/n_particulas} for x in range(n_particulas)]
 
-    # for x in range(n_particulas):
-    #     p = {
-    #         'x':random.uniform(-3,3),
-    #         'y':random.uniform(-2,2),
-    #         'theta':random.uniform(-math.pi,math.pi),
-    #         'w': 1/n_particulas
-    #     }
-    #     particulas.append(p)
-
     return particulas
 
 # predição: aplicação do modelo de transição
