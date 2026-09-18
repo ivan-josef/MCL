@@ -2,7 +2,6 @@ import random
 import math
 import simulador_fornecido
 
-
 # inicialização: ageração das particulas
 
 def criar_particulas(n_particulas):
@@ -192,12 +191,6 @@ if __name__ == '__main__':
     print('--------------------')
     pose = estimar_pose(particulas)
     print('pose',pose)
-        
-
-
-
-
-    
 
 
 
