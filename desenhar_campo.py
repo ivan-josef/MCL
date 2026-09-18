@@ -16,7 +16,7 @@ def converter_coord(x, y):
     return (px, py)
 
 
-def desenhar_campo(particulas,pose_estimada,pose_real):
+def desenhar_campo(particulas,pose_real):
                         #y x
     np_map = np.zeros((400,600,3),dtype=np.uint8)
 
@@ -30,19 +30,15 @@ def desenhar_campo(particulas,pose_estimada,pose_real):
     for p in particulas:
         cv2.circle(np_map,(converter_coord(p['x'],p['y'])),5,(255,0,0),-1)
 
-    # pose estimada
-
-    cv2.circle(np_map,(converter_coord(pose_estimada[0],pose_estimada[1])),5,(0,255,0),-1)
 
     # ground_thruth
 
     cv2.circle(np_map,(converter_coord(pose_real['x'],pose_real['y'])),5,(0,0,255),-1)
 
-
-
     cv2.imshow('teste',np_map)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    key = cv2.waitKey(100) & 0xFF
+    return key
+
 
 if __name__ == '__main__':
     desenhar_campo()
