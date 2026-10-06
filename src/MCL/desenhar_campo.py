@@ -1,6 +1,6 @@
 import numpy as np
 import cv2 
-import simulador_fornecido as sim
+from . import simulador_fornecido as sim
 
 
 

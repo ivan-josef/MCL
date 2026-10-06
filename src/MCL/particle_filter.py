@@ -1,6 +1,6 @@
 import random 
 import math
-import simulador_fornecido
+from . import simulador_fornecido as simulador_fornecido
 
 # inicialização: ageração das particulas
 
