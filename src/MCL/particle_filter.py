@@ -182,6 +182,6 @@ if __name__ == '__main__':
     print('--------------------')
     pose = estimar_pose(particulas)
     print('pose',pose)
-
+    
 
 
