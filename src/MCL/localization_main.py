@@ -1,6 +1,5 @@
-import particle_filter
-from desenhar_campo import desenhar_campo
-import simulador_fornecido
+from . import particle_filter as particle_filter,simulador_fornecido
+from .desenhar_campo import desenhar_campo
 import cv2 
 
 
