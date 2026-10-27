@@ -1,4 +1,4 @@
-from . import particle_filter as particle_filter,simulador_fornecido
+import particle_filter as particle_filter,simulador_fornecido
 from .desenhar_campo import desenhar_campo
 import cv2 
 
@@ -10,7 +10,8 @@ def executar_filtro():
 
     while True:
 
-        for i in simulador_fornecido.COMANDOS_TESTE:
+        for i in simulador_fornecido.COMANDOS_TESTE: # esse for vai ser um callback
+    
             mov = simulador_fornecido.executar_movimento(i[0],i[1])
             if mov:
                 particle_filter.mover_particulas(particulas,i[0])

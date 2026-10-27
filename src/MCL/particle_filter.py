@@ -6,7 +6,7 @@ from . import simulador_fornecido as simulador_fornecido
 
 def criar_particulas(n_particulas):
 
-    particulas = [{'x':random.uniform(-3,3),'y':random.uniform(-2,2),'theta':random.uniform(-math.pi,math.pi),'w': 1/n_particulas} for x in range(n_particulas)]
+    particulas = [{'x':random.uniform(0,9),'y':random.uniform(0,6),'theta':random.uniform(-math.pi,math.pi),'w': 1/n_particulas} for x in range(n_particulas)]
 
     return particulas
 
@@ -23,38 +23,30 @@ def normalizar_angulo(angulo):
      
 
 def aplicar_movimento(particula,movimento):
+    
+    vx = movimento['comando']['linear']['x']
+    vy = movimento['comando']['linear']['y']
+    vz = movimento['comando']['angular']['z'] # rad/s
+    dt = movimento['dt']
 
-    passo = 0.4
-    erro_desloc = 0.05
-    rot = 20.0
-    erro_rot = 3
+    theta = particula['theta'] # orientação antes do movimento ser realizado    
 
-    pos_old = particula.copy()
-    desloc = passo + random.uniform(-erro_desloc,erro_desloc)
+    dx = vx * dt
+    dy = vy * dt
+    dz = vz * dt
+    
+    incerteza_x = 0
+    incerteza_y = 0
+    incerteza_z = 0
 
-    if movimento == 'avancar':
-        particula['x'] += (desloc  * math.cos(particula['theta'])) 
-        particula['y'] += (desloc  * math.sin(particula['theta'])) 
-    elif movimento == 'girar':
-        particula['theta'] += math.radians(rot) + random.uniform(-math.radians(erro_rot),math.radians(erro_rot))
-        particula['theta'] = normalizar_angulo(particula['theta'])
+    particula['x'] += dx + incerteza_x
+    particula['y'] += dy + incerteza_y
+    particula['theta'] += z + incerteza_z
+    
+    
 
-        
 
-    c = 0
-    if (particula['x'] < -3 or particula ['x'] > 3) or (particula['y'] < -2 or particula['y'] >2):
-        while (particula['x'] < -3 or particula ['x'] > 3) or (particula['y'] < -2 or particula['y'] >2):
-            particula['x'] = pos_old['x']
-            particula['y'] = pos_old['y']
-            desloc = passo + random.uniform(-erro_desloc,erro_desloc)
-            particula['x'] += (desloc  * math.cos(particula['theta'])) 
-            particula['y'] += (desloc  * math.sin(particula['theta'])) 
-            c+=1
-            if c >= 10:
-                particula['x'] = pos_old['x']
-                particula['y'] = pos_old['y']
-                break
-
+    
 def mover_particulas(particulas,movimento):
 
     for p in particulas:
