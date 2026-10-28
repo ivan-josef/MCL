@@ -29,12 +29,9 @@ _INTERSECOES = [
 ]
 
 def converter_coord(x, y):
-    # O centro do campo (0,0) metros precisa virar o centro da imagem (300,200) pixels.
-    # Multiplicamos por 100 para aplicar a escala (1 metro = 100 pixels).
+
     px = int(x  * 100)
-    
-    # O eixo Y no OpenCV é invertido (o 0 começa no topo da tela e desce).
-    # Por isso, subtraímos de 2.0 (que é o topo físico do campo) para consertar.
+
     py = int(y * 100) 
     
     return (px, py)

@@ -1,6 +1,6 @@
-import random 
 import math
-from . import simulador_fornecido as simulador_fornecido
+import random
+from math import cos, sin
 
 # inicialização: ageração das particulas
 
@@ -31,22 +31,18 @@ def aplicar_movimento(particula,movimento):
 
     theta = particula['theta'] # orientação antes do movimento ser realizado    
 
-    dx = vx * dt
-    dy = vy * dt
-    dz = vz * dt
-    
     incerteza_x = 0
     incerteza_y = 0
     incerteza_z = 0
 
-    particula['x'] += dx + incerteza_x
-    particula['y'] += dy + incerteza_y
-    particula['theta'] += z + incerteza_z
+    dx = (vx * dt + random.uniform(-incerteza_x,incerteza_x)) * 100
+    dy = (vy * dt + random.uniform(-incerteza_y,incerteza_y)) * 100
+    dz = vz * dt + random.uniform(-incerteza_z,incerteza_z)
     
-    
+    particula["x"] += (dx * cos(theta) - dy * sin(theta)) 
+    particula["y"] += (dx * sin(theta) + dy * cos(theta)) 
+    particula["theta"] = normalizar_angulo(theta + dz ) 
 
-
-    
 def mover_particulas(particulas,movimento):
 
     for p in particulas:
