@@ -1,13 +1,12 @@
-from . import simulador_fornecido as sim
+import cv2
+
 from . import particle_filter as pf
+from . import simulador_fornecido as sim
 from .desenhar_campo import desenhar_campo
-import cv2 
-
-
 
 
 def executar_filtro():
-    
+
     particulas = pf.criar_particulas(200)
 
     while True:

@@ -1,11 +1,11 @@
 import simulador_fornecido as sim
 
+dado = sim.obter_proximo_movimento()
 
-while True:
-    dado = sim.obter_proximo_movimento()
-    if not dado:
-        break    
-    print(dado)
+obs = sim.obter_observacao_mcl(dado['numero'])
+print(obs)
+
+
 
 
 

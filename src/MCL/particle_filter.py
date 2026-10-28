@@ -52,9 +52,9 @@ def mover_particulas(particulas,movimento):
 # atualização: aplicação do modelo de observação
 
 
-def calcular_distancia(obs,particula):
+def calcular_distancia(obs,numero,particula,intersecoes):
     obs_particula = []
-    for i in simulador_fornecido._INTERSECOES:
+    for i in intersecoes:
         if i['tipo'] == obs['tipo']:
             xi = i['x']
             yi = i['y']
